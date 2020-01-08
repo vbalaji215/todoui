@@ -1,8 +1,13 @@
-<div>
-  <small *ngIf="invalidLogin">{{errorMessage}}</small>
+<h1>Login !</h1>
+<div class="container">
+  <div class="alert alert-warning" *ngIf="invalidLogin">{{errorMessage}}</div>
+
+<form>
+  <div class="form-group col-xs-5 col-lg-4">
+    <input class="form-control" placeholder="Enter Username" type="text" [(ngModel)]="username" [ngModelOptions]="{standalone: true}"/><br>
+    <input class="form-control" placeholder="Enter Password" type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}"/>
+  </div>
+  <button class="btn btn-success" (click)="handleLogin()">Login</button>
+</form>
+
 </div>
-<div>
-  Username:<input type="text" [(ngModel)]="username">
-  Password:<input type="password" [(ngModel)]="password">
-</div>
-<button (click)="handleLogin()">Login</button>
