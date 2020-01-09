@@ -1,4 +1,18 @@
+<div class="container" *ngIf="errorMessage">
+  <h2>Exception Message</h2>
+  {{errorMessage}}
+</div>
 <h1>Welcome {{name}} !!!</h1>
 <div class="container">
   You can manage your todos <a routerLink="/todos">here</a>
+</div>
+<br/>
+<div class="container">
+  Click here to get a customized welcome message <br/>
+  <button (click)="getWelcomeMessage()" class="btn btn-success">Get Welcome Message</button>
+</div>
+
+<div class="container" *ngIf="welcomeMessage">
+  <h2>Your Customized Welcome Message</h2>
+  {{welcomeMessage}}
 </div>
