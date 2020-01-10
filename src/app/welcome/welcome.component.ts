@@ -21,13 +21,23 @@ export class WelcomeComponent implements OnInit {
   }
 
   getWelcomeMessage() {
-    console.log('Get Welcome Message');
-    console.log(this.welcomeService.executeHelloWorldBeanService());
+    // console.log('Get Welcome Message');
+    // console.log(this.welcomeService.executeHelloWorldBeanService());
     this.welcomeService.executeHelloWorldBeanService().subscribe(
       response => this.handleSuccessfulResponse(response),
       errorResponse => this.handleErrorResponse(errorResponse)
     );
-    console.log('Last Line of Welcome Message');
+    // console.log('Last Line of Welcome Message');
+  }
+
+  getWelcomeMessageWithParameter() {
+    // console.log('Get Welcome Message');
+    // console.log(this.welcomeService.executeHelloWorldBeanService());
+    this.welcomeService.executeHelloWorldBeanServiceWithVariable(this.name).subscribe(
+      response => this.handleSuccessfulResponse(response),
+      errorResponse => this.handleErrorResponse(errorResponse)
+    );
+    // console.log('Last Line of Welcome Message');
   }
 
   handleSuccessfulResponse(response) {
@@ -37,8 +47,8 @@ export class WelcomeComponent implements OnInit {
   }
 
   handleErrorResponse(errorResponse) {
-    console.log(errorResponse);
-    console.log(errorResponse.error);
+    // console.log(errorResponse);
+    // console.log(errorResponse.error);
     console.log(errorResponse.error.message);
     this.errorMessage = errorResponse.error.message;
   }
