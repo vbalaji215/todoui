@@ -19,4 +19,9 @@ export class TodoDataService {
     console.log(`Execute Todo Service, to delete todo ${id}`);
     return this.httpClient.delete<Todo>(`http://localhost:8080/users/${userName}/todos/${id}`);
   }
+
+  retrieveTodo(userName, id){
+    console.log(`Execute Todo Service, to get todo ${id}`);
+    return this.httpClient.get<Todo>(`http://localhost:8080/users/${userName}/todos/${id}`);
+  }
 }
