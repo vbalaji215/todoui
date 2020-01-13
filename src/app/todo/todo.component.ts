@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoDataService } from '../service/data/todo-data.service';
 import { Todo } from '../list-todos/list-todos.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
@@ -15,7 +15,8 @@ export class TodoComponent implements OnInit {
 
   constructor(
     private todoService: TodoDataService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
     ) { }
 
   ngOnInit() {
@@ -29,10 +30,33 @@ export class TodoComponent implements OnInit {
      * respond, otherwise the user will never see this default Todo object
      * details
      */
-    this.todo = new Todo(1, '', false, new Date());
-    this.todoService.retrieveTodo('balaji',this.todoId).subscribe(
-      data => this.todo = data
-    );
+    this.todo = new Todo(this.todoId, '', false, new Date());
+    if(this.todoId != -1){
+      this.todoService.retrieveTodo('balaji',this.todoId).subscribe(
+        data => this.todo = data
+      );
+    }
+    
+  }
+
+  saveTodo(){
+    if(this.todoId != -1){
+      this.todoService.updateTodo('balaji',this.todoId,this.todo).subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(['todos']);
+        }
+      );
+    }else{
+      console.log("About to add todo");
+      this.todoService.createTodo('balaji',this.todo).subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(['todos']);
+        }
+      );
+    }
+    
   }
 
 }

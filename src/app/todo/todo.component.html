@@ -1,15 +1,39 @@
 <h1>Todo</h1>
 <div class="container">
-  <fieldset class="form-group">
-    <label>Description</label>
-    <input type="text" [(ngModel)]="todo.description" class="form-control" name="description" required = "required"/>
-  </fieldset>
-  <fieldset class="form-group">
-    <label>Target Date</label>
-    <input type="date" 
-    [ngModel]="todo.targetDate | date:'yyyy-MM-dd'"
-    (ngModelChange)="todo.targetDate = $event" 
-    class="form-control" name="targetDate" required = "required"/>
-  </fieldset>
-  <button class="btn btn-success" (click)="saveTodo()">Save</button>
+  <!-- Use this if you want a common message for the entire form  
+  <div class="alert alert-warning" *ngIf="todoForm.dirty && todoForm.invalid">
+      Enter Valid Values
+  </div>-->
+ 
+  <!-- Use this if you want a messages for each field 
+  <div class="alert alert-warning" *ngIf="description.dirty && description.invalid">
+    Enter Valid Description
+  </div>
+  <div class="alert alert-warning" *ngIf="targetDate.dirty && targetDate.invalid">
+    Enter Valid Target Date
+  </div>-->
+  <form (ngSubmit)="!todoForm.invalid && saveTodo()" #todoForm="ngForm">
+    <fieldset class="form-group">
+      <label>Description</label>
+      <div class="alert alert-warning" *ngIf="description.dirty && description.invalid">
+        Enter Valid Description
+      </div>
+      <input type="text" [(ngModel)]="todo.description" 
+      class="form-control" name="description" required = "required"
+      minlength="5" #description="ngModel"/>
+    </fieldset>
+    <fieldset class="form-group">
+      <label>Target Date</label>
+      <div class="alert alert-warning" *ngIf="targetDate.dirty && targetDate.invalid">
+        Enter Valid Target Date
+      </div>
+      <input type="date" 
+      [ngModel]="todo.targetDate | date:'yyyy-MM-dd'"
+      (ngModelChange)="todo.targetDate = $event" 
+      class="form-control" name="targetDate" required = "required"
+      #targetDate="ngModel"/>
+    </fieldset>
+    <button type="submit" class="btn btn-success">Save</button>
+  </form>
+  
 </div>

@@ -24,4 +24,17 @@ export class TodoDataService {
     console.log(`Execute Todo Service, to get todo ${id}`);
     return this.httpClient.get<Todo>(`http://localhost:8080/users/${userName}/todos/${id}`);
   }
+
+  updateTodo(userName,id,todo){
+    return this.httpClient.put<Todo>(
+      `http://localhost:8080/users/${userName}/todos/${id}`,
+      todo);
+  }
+
+  createTodo(userName,todo){
+    console.log(userName);
+    return this.httpClient.post<Todo>(
+      `http://localhost:8080/users/${userName}/todos`,
+      todo);
+  }
 }
