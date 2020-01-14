@@ -25,17 +25,17 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  handleLogin() {
-    console.log(this.username);
-    console.log(this.password);
-    if (this.authenticator.authenticate(this.username, this.password)) {
-      this.invalidLogin = false;
-      // Redirect the user to Welcome Page
-      this.router.navigate(['welcome', this.username]);
-    } else {
-      this.invalidLogin = true;
-    }
-  }
+  // handleLogin() {
+  //   console.log(this.username);
+  //   console.log(this.password);
+  //   if (this.authenticator.authenticate(this.username, this.password)) {
+  //     this.invalidLogin = false;
+  //     // Redirect the user to Welcome Page
+  //     this.router.navigate(['welcome', this.username]);
+  //   } else {
+  //     this.invalidLogin = true;
+  //   }
+  // }
 
   handleBasicAuthLogin() {
     console.log(this.username);

@@ -34,8 +34,8 @@ import { HttpInterceptorBasicAuthService } from './service/http/http-interceptor
     HttpClientModule
   ],
   providers: [{
-    provide: HTTP_INTERCEPTORS, 
-    useClass: HttpInterceptorBasicAuthService, 
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpInterceptorBasicAuthService,
     multi: true
   }
   ],
